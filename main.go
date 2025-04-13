@@ -23,13 +23,13 @@ func main() {
 	}
 
 	// Create banking details
-	banking := internal.NewBankingDetails("123456789", "Bank of America", "US12345678901234567890", "BOFAUS3N", "50000")
+	banking := internal.NewBankingDetails("123456789", "Bank of America", "US12345678901234567890", "BOFAUS3N", 50000.00)
 
 	// Add transactions
 	banking.AddTransaction(internal.Transaction{
 		ID:            "txn-001",
 		Description:   "Salary deposit",
-		Amount:        "7000",
+		Amount:        7000.00,
 		Date:          "2025-03-01",
 		Type:          "credit",
 		Category:      "income",
@@ -38,12 +38,12 @@ func main() {
 		Location:      "Anytown",
 		PaymentMethod: "wire",
 		Currency:      "USD",
-		ExchangeRate:  "1",
+		ExchangeRate:  1.00,
 	})
 	banking.AddTransaction(internal.Transaction{
 		ID:            "txn-002",
 		Description:   "Rent payment",
-		Amount:        "2000",
+		Amount:        2000.00,
 		Date:          "2025-03-03",
 		Type:          "debit",
 		Category:      "housing",
@@ -52,14 +52,14 @@ func main() {
 		Location:      "Anytown",
 		PaymentMethod: "ACH",
 		Currency:      "USD",
-		ExchangeRate:  "1",
+		ExchangeRate:  1.00,
 	})
 
 	// Add investments
 	banking.AddInvestment(internal.Investment{
 		ID:          "inv-001",
 		Type:        "stocks",
-		Amount:      "15000",
+		Amount:      15000.00,
 		Currency:    "USD",
 		StartDate:   "2023-01-01",
 		EndDate:     "",
@@ -71,9 +71,9 @@ func main() {
 	banking.AddLoan(internal.Loan{
 		ID:              "loan-001",
 		Type:            "mortgage",
-		Principal:       "300000",
-		Outstanding:     "250000",
-		InterestRate:    "3.5%",
+		Principal:       300000.00,
+		Outstanding:     250000.00,
+		InterestRate:    3.5,
 		StartDate:       "2020-01-01",
 		EndDate:         "2050-01-01",
 		Lender:          "Wells Fargo",
@@ -85,8 +85,8 @@ func main() {
 		ID:            "ins-001",
 		Provider:      "StateFarm",
 		Type:          "life",
-		Coverage:      "500000",
-		Premium:       "500",
+		Coverage:      500000.00,
+		Premium:       500.00,
 		StartDate:     "2022-01-01",
 		EndDate:       "2032-01-01",
 		Beneficiaries: "Jane Doe",
@@ -97,7 +97,7 @@ func main() {
 		ID:           "re-001",
 		Address:      "456 Elm St, Anytown, USA",
 		Type:         "residential",
-		Value:        "350000",
+		Value:        350000.00,
 		PurchaseDate: "2019-05-01",
 		Ownership:    "full",
 	})
@@ -107,7 +107,7 @@ func main() {
 		ID:           "biz-001",
 		BusinessName: "Doe Ventures LLC",
 		Ownership:    "50%",
-		Value:        "100000",
+		Value:        100000.00,
 		Role:         "partner",
 		StartDate:    "2020-06-01",
 	})
@@ -116,7 +116,7 @@ func main() {
 	banking.AddOtherAsset(internal.OtherAsset{
 		ID:           "asset-001",
 		Description:  "Art collection",
-		Value:        "25000",
+		Value:        25000.00,
 		Type:         "collectibles",
 		AcquiredDate: "2018-03-15",
 	})
@@ -125,7 +125,7 @@ func main() {
 	banking.AddOtherLiability(internal.OtherLiability{
 		ID:          "liab-001",
 		Description: "Credit card debt",
-		Amount:      "8000",
+		Amount:      8000.00,
 		DueDate:     "2025-04-30",
 		Creditor:    "Chase",
 	})
@@ -134,7 +134,7 @@ func main() {
 	banking.AddOtherIncome(internal.OtherIncome{
 		ID:           "inc-001",
 		Description:  "Freelance web development",
-		Amount:       "2000",
+		Amount:       2000.00,
 		Frequency:    "monthly",
 		Source:       "Upwork",
 		DateReceived: "2025-03-10",
@@ -144,7 +144,7 @@ func main() {
 	banking.AddOtherExpense(internal.OtherExpense{
 		ID:          "exp-001",
 		Description: "Gym membership",
-		Amount:      "100",
+		Amount:      100.00,
 		Category:    "health",
 		Date:        "2025-03-05",
 	})
@@ -153,7 +153,7 @@ func main() {
 	banking.AddOtherDebt(internal.OtherDebt{
 		ID:          "debt-001",
 		Description: "Student loan",
-		Amount:      "25000",
+		Amount:      25000.00,
 		DueDate:     "2030-12-01",
 		Lender:      "Navient",
 	})

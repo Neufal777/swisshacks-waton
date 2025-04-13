@@ -19,11 +19,12 @@ const (
 )
 
 type Contract struct {
-	ID          string         `json:"id"`          // Unique identifier for the contract
-	Name        string         `json:"name"`        // Name of the contract
-	Description string         `json:"description"` // Description of the contract
-	Type        string         `json:"type"`        // Type of the contract (e.g., mortgage, lease, etc.)
-	Parties     []ContractPart `json:"parties"`     // List of parties involved in the contract
+	ID          string         `json:"id"`            // Unique identifier for the contract
+	Name        string         `json:"name"`          // Name of the contract
+	Description string         `json:"description"`   // Description of the contract
+	Type        string         `json:"type"`          // Type of the contract (e.g., mortgage, lease, etc.)
+	AskingInUSD int            `json:"asking_in_usd"` // Asking price in USD
+	Parties     []ContractPart `json:"parties"`       // List of parties involved in the contract
 }
 
 // GenerateContract creates a new contract based on the specified type.
