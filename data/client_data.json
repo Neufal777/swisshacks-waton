@@ -1,0 +1,262 @@
+{
+    "client": {
+      "name": "John",
+      "surname": "Doe",
+      "email": "john.doe@example.com",
+      "birth_date": "1985-04-12",
+      "address": "123 Main St, Anytown, USA",
+      "phone": "+1-555-123-4567",
+      "ssn": "123-45-6789"
+    },
+    "banking_details": {
+      "account_number": "123456789",
+      "bank_name": "Bank of America",
+      "iban": "US12345678901234567890",
+      "swift_code": "BOFAUS3N",
+      "balance": 50000.00
+    },
+    "transactions": [
+      {
+        "id": "txn-001",
+        "description": "Salary deposit",
+        "amount": 7000.00,
+        "date": "2025-03-01",
+        "type": "credit",
+        "category": "income",
+        "tags": ["salary", "monthly"],
+        "notes": "Monthly salary",
+        "location": "Anytown",
+        "payment_method": "wire",
+        "currency": "USD",
+        "exchange_rate": 1.00
+      },
+      {
+        "id": "txn-002",
+        "description": "Rent payment",
+        "amount": 2000.00,
+        "date": "2025-03-03",
+        "type": "debit",
+        "category": "housing",
+        "tags": ["rent"],
+        "notes": "March rent",
+        "location": "Anytown",
+        "payment_method": "ACH",
+        "currency": "USD",
+        "exchange_rate": 1.00
+      },
+      {
+        "id": "txn-003",
+        "description": "Grocery shopping",
+        "amount": 150.00,
+        "date": "2025-03-10",
+        "type": "debit",
+        "category": "food",
+        "tags": ["groceries", "monthly"],
+        "notes": "Supermarket purchase",
+        "location": "Anytown",
+        "payment_method": "debit",
+        "currency": "USD",
+        "exchange_rate": 1.00
+      },
+      {
+        "id": "txn-004",
+        "description": "Car loan payment",
+        "amount": 400.00,
+        "date": "2025-03-15",
+        "type": "debit",
+        "category": "loans",
+        "tags": ["car", "loan"],
+        "notes": "Car loan payment",
+        "location": "Anytown",
+        "payment_method": "ACH",
+        "currency": "USD",
+        "exchange_rate": 1.00
+      }
+    ],
+    "investments": [
+      {
+        "id": "inv-001",
+        "type": "stocks",
+        "amount": 15000.00,
+        "currency": "USD",
+        "start_date": "2023-01-01",
+        "end_date": "",
+        "description": "Tech portfolio",
+        "institution": "Robinhood"
+      },
+      {
+        "id": "inv-002",
+        "type": "bonds",
+        "amount": 10000.00,
+        "currency": "USD",
+        "start_date": "2024-06-01",
+        "end_date": "",
+        "description": "Government bonds",
+        "institution": "TreasuryDirect"
+      }
+    ],
+    "loans": [
+      {
+        "id": "loan-001",
+        "type": "mortgage",
+        "principal": 300000.00,
+        "outstanding": 250000.00,
+        "interest_rate": 3.5,
+        "start_date": "2020-01-01",
+        "end_date": "2050-01-01",
+        "lender": "Wells Fargo",
+        "payment_schedule": "monthly"
+      },
+      {
+        "id": "loan-002",
+        "type": "car loan",
+        "principal": 20000.00,
+        "outstanding": 10000.00,
+        "interest_rate": 5.0,
+        "start_date": "2023-05-01",
+        "end_date": "2028-05-01",
+        "lender": "Chase Bank",
+        "payment_schedule": "monthly"
+      }
+    ],
+    "insurance_policies": [
+      {
+        "id": "ins-001",
+        "provider": "StateFarm",
+        "type": "life",
+        "coverage": 500000.00,
+        "premium": 500.00,
+        "start_date": "2022-01-01",
+        "end_date": "2032-01-01",
+        "beneficiaries": "Jane Doe"
+      },
+      {
+        "id": "ins-002",
+        "provider": "Progressive",
+        "type": "auto",
+        "coverage": 30000.00,
+        "premium": 1200.00,
+        "start_date": "2024-07-01",
+        "end_date": "2025-07-01",
+        "beneficiaries": "John Doe"
+      }
+    ],
+    "real_estate": [
+      {
+        "id": "re-001",
+        "address": "456 Elm St, Anytown, USA",
+        "type": "residential",
+        "value": 350000.00,
+        "purchase_date": "2019-05-01",
+        "ownership": "full"
+      },
+      {
+        "id": "re-002",
+        "address": "789 Oak St, Anytown, USA",
+        "type": "commercial",
+        "value": 750000.00,
+        "purchase_date": "2021-11-01",
+        "ownership": "partial"
+      }
+    ],
+    "business_interests": [
+      {
+        "id": "biz-001",
+        "business_name": "Doe Ventures LLC",
+        "ownership": "50%",
+        "value": 100000.00,
+        "role": "partner",
+        "start_date": "2020-06-01"
+      },
+      {
+        "id": "biz-002",
+        "business_name": "Tech Innovations Inc.",
+        "ownership": "30%",
+        "value": 500000.00,
+        "role": "investor",
+        "start_date": "2022-01-15"
+      }
+    ],
+    "other_assets": [
+      {
+        "id": "asset-001",
+        "description": "Art collection",
+        "value": 25000.00,
+        "type": "collectibles",
+        "acquired_date": "2018-03-15"
+      },
+      {
+        "id": "asset-002",
+        "description": "Vintage car",
+        "value": 50000.00,
+        "type": "vehicle",
+        "acquired_date": "2020-06-10"
+      }
+    ],
+    "other_liabilities": [
+      {
+        "id": "liab-001",
+        "description": "Credit card debt",
+        "amount": 8000.00,
+        "due_date": "2025-04-30",
+        "creditor": "Chase"
+      },
+      {
+        "id": "liab-002",
+        "description": "Personal loan",
+        "amount": 15000.00,
+        "due_date": "2025-08-15",
+        "creditor": "Bank of America"
+      }
+    ],
+    "other_incomes": [
+      {
+        "id": "inc-001",
+        "description": "Freelance web development",
+        "amount": 2000.00,
+        "frequency": "monthly",
+        "source": "Upwork",
+        "date_received": "2025-03-10"
+      },
+      {
+        "id": "inc-002",
+        "description": "Consulting services",
+        "amount": 1500.00,
+        "frequency": "monthly",
+        "source": "Freelance",
+        "date_received": "2025-03-15"
+      }
+    ],
+    "other_expenses": [
+      {
+        "id": "exp-001",
+        "description": "Gym membership",
+        "amount": 100.00,
+        "category": "health",
+        "date": "2025-03-05"
+      },
+      {
+        "id": "exp-002",
+        "description": "Utilities bill",
+        "amount": 150.00,
+        "category": "utilities",
+        "date": "2025-03-12"
+      }
+    ],
+    "other_debts": [
+      {
+        "id": "debt-001",
+        "description": "Student loan",
+        "amount": 25000.00,
+        "due_date": "2030-12-01",
+        "lender": "Navient"
+      },
+      {
+        "id": "debt-002",
+        "description": "Mortgage loan",
+        "amount": 250000.00,
+        "due_date": "2050-01-01",
+        "lender": "Wells Fargo"
+      }
+    ]
+  }

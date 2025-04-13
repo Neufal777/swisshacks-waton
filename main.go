@@ -1,162 +1,106 @@
 package main
 
 import (
+	"encoding/json"
+	"io/ioutil"
+	"log"
+
 	"github.com/swisshacks-waton/internal"
 )
 
 func main() {
+	// Load data from the JSON file
+	clientData, err := loadClientData("data/client_data.json")
+	if err != nil {
+		log.Fatalf("Error loading client data: %v", err)
+	}
+
 	// Generate a mortgage contract
 	contract, err := internal.GenerateContract(internal.ContractTypemortgage)
 	if err != nil {
 		panic(err)
 	}
 
-	// Create client details
+	// Create client details from the JSON data
 	client := internal.ClientDetails{
-		Name:      "John",
-		Surname:   "Doe",
-		Email:     "john.doe@example.com",
-		BirthDate: "1985-04-12",
-		Address:   "123 Main St, Anytown, USA",
-		Phone:     "+1-555-123-4567",
-		SSN:       "123-45-6789",
+		Name:      clientData.Client.Name,
+		Surname:   clientData.Client.Surname,
+		Email:     clientData.Client.Email,
+		BirthDate: clientData.Client.BirthDate,
+		Address:   clientData.Client.Address,
+		Phone:     clientData.Client.Phone,
+		SSN:       clientData.Client.SSN,
 	}
 
-	// Create banking details
-	banking := internal.NewBankingDetails("123456789", "Bank of America", "US12345678901234567890", "BOFAUS3N", 50000.00)
+	// Create banking details from the JSON data
+	banking := internal.NewBankingDetails(
+		clientData.BankingDetails.AccountNumber,
+		clientData.BankingDetails.BankName,
+		clientData.BankingDetails.IBAN,
+		clientData.BankingDetails.SwiftCode,
+		clientData.BankingDetails.Balance,
+	)
 
-	// Add transactions
-	banking.AddTransaction(internal.Transaction{
-		ID:            "txn-001",
-		Description:   "Salary deposit",
-		Amount:        7000.00,
-		Date:          "2025-03-01",
-		Type:          "credit",
-		Category:      "income",
-		Tags:          []string{"salary", "monthly"},
-		Notes:         "Monthly salary",
-		Location:      "Anytown",
-		PaymentMethod: "wire",
-		Currency:      "USD",
-		ExchangeRate:  1.00,
-	})
-	banking.AddTransaction(internal.Transaction{
-		ID:            "txn-002",
-		Description:   "Rent payment",
-		Amount:        2000.00,
-		Date:          "2025-03-03",
-		Type:          "debit",
-		Category:      "housing",
-		Tags:          []string{"rent"},
-		Notes:         "March rent",
-		Location:      "Anytown",
-		PaymentMethod: "ACH",
-		Currency:      "USD",
-		ExchangeRate:  1.00,
-	})
+	// Add transactions from the JSON data
+	for _, txn := range clientData.Transactions {
+		banking.AddTransaction(internal.Transaction{
+			ID:            txn.ID,
+			Description:   txn.Description,
+			Amount:        txn.Amount,
+			Date:          txn.Date,
+			Type:          txn.Type,
+			Category:      txn.Category,
+			Tags:          txn.Tags,
+			Notes:         txn.Notes,
+			Location:      txn.Location,
+			PaymentMethod: txn.PaymentMethod,
+			Currency:      txn.Currency,
+			ExchangeRate:  txn.ExchangeRate,
+		})
+	}
 
-	// Add investments
-	banking.AddInvestment(internal.Investment{
-		ID:          "inv-001",
-		Type:        "stocks",
-		Amount:      15000.00,
-		Currency:    "USD",
-		StartDate:   "2023-01-01",
-		EndDate:     "",
-		Description: "Tech portfolio",
-		Institution: "Robinhood",
-	})
+	// Add investments from the JSON data
+	for _, inv := range clientData.Investments {
+		banking.AddInvestment(internal.Investment{
+			ID:          inv.ID,
+			Type:        inv.Type,
+			Amount:      inv.Amount,
+			Currency:    inv.Currency,
+			StartDate:   inv.StartDate,
+			EndDate:     inv.EndDate,
+			Description: inv.Description,
+			Institution: inv.Institution,
+		})
+	}
 
-	// Add a loan
-	banking.AddLoan(internal.Loan{
-		ID:              "loan-001",
-		Type:            "mortgage",
-		Principal:       300000.00,
-		Outstanding:     250000.00,
-		InterestRate:    3.5,
-		StartDate:       "2020-01-01",
-		EndDate:         "2050-01-01",
-		Lender:          "Wells Fargo",
-		PaymentSchedule: "monthly",
-	})
+	// Add loans from the JSON data
+	for _, loan := range clientData.Loans {
+		banking.AddLoan(internal.Loan{
+			ID:              loan.ID,
+			Type:            loan.Type,
+			Principal:       loan.Principal,
+			Outstanding:     loan.Outstanding,
+			InterestRate:    loan.InterestRate,
+			StartDate:       loan.StartDate,
+			EndDate:         loan.EndDate,
+			Lender:          loan.Lender,
+			PaymentSchedule: loan.PaymentSchedule,
+		})
+	}
 
-	// Add insurance
-	banking.AddInsurancePolicy(internal.InsurancePolicy{
-		ID:            "ins-001",
-		Provider:      "StateFarm",
-		Type:          "life",
-		Coverage:      500000.00,
-		Premium:       500.00,
-		StartDate:     "2022-01-01",
-		EndDate:       "2032-01-01",
-		Beneficiaries: "Jane Doe",
-	})
-
-	// Add real estate
-	banking.AddRealEstate(internal.RealEstate{
-		ID:           "re-001",
-		Address:      "456 Elm St, Anytown, USA",
-		Type:         "residential",
-		Value:        350000.00,
-		PurchaseDate: "2019-05-01",
-		Ownership:    "full",
-	})
-
-	// Add business interest
-	banking.AddBusinessInterest(internal.BusinessInterest{
-		ID:           "biz-001",
-		BusinessName: "Doe Ventures LLC",
-		Ownership:    "50%",
-		Value:        100000.00,
-		Role:         "partner",
-		StartDate:    "2020-06-01",
-	})
-
-	// Add other assets
-	banking.AddOtherAsset(internal.OtherAsset{
-		ID:           "asset-001",
-		Description:  "Art collection",
-		Value:        25000.00,
-		Type:         "collectibles",
-		AcquiredDate: "2018-03-15",
-	})
-
-	// Add liabilities
-	banking.AddOtherLiability(internal.OtherLiability{
-		ID:          "liab-001",
-		Description: "Credit card debt",
-		Amount:      8000.00,
-		DueDate:     "2025-04-30",
-		Creditor:    "Chase",
-	})
-
-	// Add other income
-	banking.AddOtherIncome(internal.OtherIncome{
-		ID:           "inc-001",
-		Description:  "Freelance web development",
-		Amount:       2000.00,
-		Frequency:    "monthly",
-		Source:       "Upwork",
-		DateReceived: "2025-03-10",
-	})
-
-	// Add other expenses
-	banking.AddOtherExpense(internal.OtherExpense{
-		ID:          "exp-001",
-		Description: "Gym membership",
-		Amount:      100.00,
-		Category:    "health",
-		Date:        "2025-03-05",
-	})
-
-	// Add other debts
-	banking.AddOtherDebt(internal.OtherDebt{
-		ID:          "debt-001",
-		Description: "Student loan",
-		Amount:      25000.00,
-		DueDate:     "2030-12-01",
-		Lender:      "Navient",
-	})
+	// Add insurance policies from the JSON data
+	for _, ins := range clientData.InsurancePolicies {
+		banking.AddInsurancePolicy(internal.InsurancePolicy{
+			ID:            ins.ID,
+			Provider:      ins.Provider,
+			Type:          ins.Type,
+			Coverage:      ins.Coverage,
+			Premium:       ins.Premium,
+			StartDate:     ins.StartDate,
+			EndDate:       ins.EndDate,
+			Beneficiaries: ins.Beneficiaries,
+		})
+	}
 
 	// Create contract part and add to contract
 	contractPart := internal.NewContractPart(
@@ -167,12 +111,39 @@ func main() {
 
 	contract.AddParty(contractPart)
 
+	// Create a risk assessment
 	NewRiskAssessment := internal.NewRiskAssessment(
 		contract,
 		"medium",
 		[]string{"Review contract terms", "Consult with a legal advisor"},
-		"Risk assessment based on client details and banking information.")
+		"Risk assessment based on client details and banking information.",
+	)
 
 	NewRiskAssessment.CalculateRiskScore()
+}
 
+// Load client data from the JSON file
+func loadClientData(filename string) (ClientData, error) {
+	var data ClientData
+	fileContent, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return data, err
+	}
+
+	err = json.Unmarshal(fileContent, &data)
+	if err != nil {
+		return data, err
+	}
+
+	return data, nil
+}
+
+// Define structures to parse the JSON data
+type ClientData struct {
+	Client            internal.ClientDetails     `json:"client"`
+	BankingDetails    internal.BankingDetails    `json:"banking_details"`
+	Transactions      []internal.Transaction     `json:"transactions"`
+	Investments       []internal.Investment      `json:"investments"`
+	Loans             []internal.Loan            `json:"loans"`
+	InsurancePolicies []internal.InsurancePolicy `json:"insurance_policies"`
 }

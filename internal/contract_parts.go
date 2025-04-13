@@ -22,20 +22,20 @@ type ClientDetails struct {
 }
 
 type ContractPart struct {
-	ID              string         `json:"id"`
-	Name            string         `json:"name"`            // Name of the contract part
-	ClientDetails   ClientDetails  `json:"client_details"`  // Details of the client involved in the contract
-	BankindgDetails BankingDetails `json:"banking_details"` // Banking details of the client
+	ID             string         `json:"id"`
+	Name           string         `json:"name"`            // Name of the contract part
+	ClientDetails  ClientDetails  `json:"client_details"`  // Details of the client involved in the contract
+	BankingDetails BankingDetails `json:"banking_details"` // Banking details of the client
 }
 
 func NewContractPart(name string, clientDetails ClientDetails, bankingDetails BankingDetails) ContractPart {
 	// Generate a unique ID for the contract part
 	contractPartID := uuid.New().String()
 	contractPart := ContractPart{
-		ID:              fmt.Sprintf("contract-part-%s", contractPartID),
-		Name:            name,
-		ClientDetails:   clientDetails,
-		BankindgDetails: bankingDetails,
+		ID:             fmt.Sprintf("contract-part-%s", contractPartID),
+		Name:           name,
+		ClientDetails:  clientDetails,
+		BankingDetails: bankingDetails,
 	}
 	return contractPart
 }
